@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Cesar Younes</title>
-    <link>https://www.cesaryounes.com/</link>
+    <link>https://cesar-younes.github.io/</link>
     <description>Recent content on Cesar Younes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://www.cesaryounes.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://cesar-younes.github.io/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>New Beginnings</title>
-      <link>https://www.cesaryounes.com/2020/05/new-beginnings/</link>
+      <link>https://cesar-younes.github.io/2020/05/new-beginnings/</link>
       <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
       
-      <guid>https://www.cesaryounes.com/2020/05/new-beginnings/</guid>
+      <guid>https://cesar-younes.github.io/2020/05/new-beginnings/</guid>
       <description>&lt;p&gt;Launched my blog again based on Hugo.&lt;/p&gt;</description>
     </item>
     
