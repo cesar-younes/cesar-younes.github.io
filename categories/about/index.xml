@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>about on Cesar Younes</title>
+    <link>https://www.cesaryounes.com/categories/about/</link>
+    <description>Recent content in about on Cesar Younes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
+    
+	<atom:link href="https://www.cesaryounes.com/categories/about/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>New Beginnings</title>
+      <link>https://www.cesaryounes.com/2020/05/new-beginnings/</link>
+      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://www.cesaryounes.com/2020/05/new-beginnings/</guid>
+      <description>&lt;p&gt;Launched my blog again based on Hugo.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
