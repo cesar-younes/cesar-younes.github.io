@@ -8,6 +8,15 @@
     <language>en-us</language>
     <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cesar-younes.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
     <item>
+      <title>about</title>
+      <link>https://cesar-younes.github.io/categories/about/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/categories/about/</guid>
+      <description></description>
+    </item>
+    
+    <item>
       <title>devops</title>
       <link>https://cesar-younes.github.io/categories/devops/</link>
       <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
@@ -17,27 +26,9 @@
     </item>
     
     <item>
-      <title>CKAD Certification</title>
-      <link>https://cesar-younes.github.io/categories/ckad-certification/</link>
-      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://cesar-younes.github.io/categories/ckad-certification/</guid>
-      <description></description>
-    </item>
-    
-    <item>
-      <title>about</title>
-      <link>https://cesar-younes.github.io/categories/about/</link>
-      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
-      
-      <guid>https://cesar-younes.github.io/categories/about/</guid>
-      <description></description>
-    </item>
-    
-    <item>
       <title>hugo</title>
       <link>https://cesar-younes.github.io/categories/hugo/</link>
-      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
       
       <guid>https://cesar-younes.github.io/categories/hugo/</guid>
       <description></description>
