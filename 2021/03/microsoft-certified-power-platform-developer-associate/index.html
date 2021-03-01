@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.75.1 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cesar Younes">
+<meta name="keywords" content="">
+<meta name="description" content="Basic Windows Server template on Azure with ARM">
+
+
+<meta property="og:description" content="Basic Windows Server template on Azure with ARM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Microsoft Certified: Power PLatform Developer Associate">
+<meta name="twitter:title" content="Microsoft Certified: Power PLatform Developer Associate">
+<meta property="og:url" content="https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+<meta property="twitter:url" content="https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+<meta property="og:site_name" content="Cesar Younes">
+<meta property="og:description" content="Basic Windows Server template on Azure with ARM">
+<meta name="twitter:description" content="Basic Windows Server template on Azure with ARM">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2021-03-01T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-03-01T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="devops">
+    
+  
+  
+    
+      <meta property="article:tag" content="powerplatform">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cesarblogstorage.blob.core.windows.net/post-thumbs/PowerPlatform150x150.jpg">
+  <meta property="twitter:image" content="https://cesarblogstorage.blob.core.windows.net/post-thumbs/PowerPlatform150x150.jpg">
+
+
+
+
+
+  <meta property="og:image" content="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg">
+  <meta property="twitter:image" content="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg">
+
+
+    <title>Microsoft Certified: Power PLatform Developer Associate</title>
+
+    <link rel="icon" href="https://cesar-younes.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://cesar-younes.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cesar-younes.github.io/">Cesar Younes</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cesar-younes.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cesar-younes.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cesar Younes</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer living in Dubai focused on Microsoft Azure and Kubernetes.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cesar-younes" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/cesaryounes" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Microsoft Certified: Power PLatform Developer Associate
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2021-03-01T00:00:00Z">
+        
+  March 1, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cesar-younes.github.io/categories/devops">devops</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="exam-pl-400-microsoft-power-platform-developer-skills-measured">Exam PL-400: Microsoft Power Platform Developer Skills Measured</h1>
+<h2 id="create-a-technical-design-10-15">Create a technical design (10-15%)</h2>
+<h3 id="validate-requirements-and-design-technical-architecture">Validate requirements and design technical architecture</h3>
+<ul>
+<li>design and validate the technical architecture for a solution</li>
+<li>design authentication and authorization strategy</li>
+<li>determine whether you can meet requirements with out-of-the-box functionality</li>
+<li>determine when to use Logic Apps versus Power Automate flows</li>
+<li>determine when to use serverless computing, plug-ins, or Power Automate</li>
+<li>determine when to build a virtual entity data source provider and when to use 
+connectors</li>
+</ul>
+<h3 id="design-solution-components">Design solution components</h3>
+<ul>
+<li>design a data model</li>
+<li>design Power Apps reusable components</li>
+<li>design custom connectors</li>
+<li>design server-side components</li>
+</ul>
+<h3 id="describe-power-platform-extensibility-points">Describe Power Platform extensibility points</h3>
+<ul>
+<li>describe Power Virtual Agents extensibility points including Bot Framework skills and Power Automate flows</li>
+<li>describe Power BI extensibility points including Power BI APIs, custom visuals, and embedding Power BI apps in websites and other applications</li>
+<li>describe Power Apps portal extensibility points including CRUD APIs and custom styling</li>
+</ul>
+<h2 id="configure-common-data-service-15-20">Configure Common Data Service (15-20%)</h2>
+<h3 id="configure-security-to-support-development">Configure security to support development</h3>
+<ul>
+<li>troubleshoot operational security issues</li>
+<li>create or update security roles and field-level security profiles</li>
+<li>configure business units and teams
+Implement entities and fields</li>
+<li>configure entity and entity options</li>
+<li>configure fields</li>
+<li>configure relationships and types of behaviors
+Implement application lifecycle management (ALM)</li>
+<li>create solutions and manage solution components</li>
+<li>import and export solutions</li>
+<li>manage solution dependencies</li>
+<li>create a package for deployment</li>
+<li>automate deployments</li>
+<li>implement source control for projects including solutions and code assets
+Create and configure Power Apps (15-20%)
+Create model-driven apps</li>
+<li>configure a model-driven app</li>
+<li>configure forms</li>
+<li>configure views</li>
+<li>configure visualizations
+Create canvas apps</li>
+<li>create and configure a canvas app</li>
+<li>implement complex formulas to manage control events and properties</li>
+<li>analyze app usage by using App Insights</li>
+<li>build reusable component libraries
+Manage and troubleshoot apps</li>
+<li>troubleshoot app issues by using Monitor and other browser-based debugging tools</li>
+<li>interpret results from App Checker and Solution Checker</li>
+<li>identify and resolve connector and API errors</li>
+<li>optimize app performance including pre-loading data and query delegation
+Configure business process automation (5-10%)
+Configure Power Automate - create and configure a flow</li>
+<li>configure steps to use Common Data Service connector actions and triggers</li>
+<li>implement complex expressions in flow steps</li>
+<li>implement error handling</li>
+<li>troubleshoot flows by analyzing JSON responses from connectors
+Implement processes</li>
+<li>create and configure business process flows</li>
+<li>create and configure business rules</li>
+<li>create, manage, and interact with business process flows by using server-side and clientside code</li>
+<li>troubleshoot processes 
+Extend the user experience (10-15%)
+Apply business logic using client scripting</li>
+<li>create JavaScript or Typescript code that targets the XRM API</li>
+<li>register an event handler</li>
+<li>create client-side scripts that target the Common Data Service Web API
+Create a Power Apps Component Framework (PCF) component</li>
+<li>describe the PCF component lifecycle</li>
+<li>initialize a new PCF component</li>
+<li>configure a PCF component manifest</li>
+<li>implement the component interfaces</li>
+<li>package, deploy, and consume the component</li>
+<li>configure and use PCF Device, Utility, and WebAPI features</li>
+<li>test and debug PCF components by using the local test harness
+Create a command button function</li>
+<li>create the command function</li>
+<li>design command button rules and actions</li>
+<li>edit the command bar by using the Ribbon Workbench</li>
+<li>manage dependencies between JavaScript libraries 
+Extend the platform (15-20%)
+Create a plug-in</li>
+<li>describe the plug-in execution pipeline</li>
+<li>design and develop a plug-in</li>
+<li>debug and troubleshoot a plug-in- implement business logic by using pre and post images</li>
+<li>perform operations on data by using the Organization service API</li>
+<li>optimize plug-in performance</li>
+<li>register custom assemblies by using the Plug-in Registration Tool</li>
+<li>develop a plug-in that targets a custom action message
+Create custom connectors</li>
+<li>create a definition for the API</li>
+<li>configure API security</li>
+<li>use policy templates to modify connector behavior at runtime</li>
+<li>expose Azure Functions as custom connectors</li>
+<li>create custom connectors for public APIs by using Postman 
+Use platform APIs</li>
+<li>interact with data and processes by using the Common Data Service Web API or the 
+Organization Service</li>
+<li>implement API limit retry policies</li>
+<li>optimize for performance, concurrency, transactions, and batching</li>
+<li>query the Discovery service to discover the URL and other information for an 
+organization</li>
+<li>perform entity metadata operations with the Web API</li>
+<li>perform authentication by using OAuth
+Process workloads</li>
+<li>process long-running operations by using Azure Functions</li>
+<li>configure scheduled and event-driven function triggers in Azure Functions</li>
+<li>authenticate to the Power Platform by using managed identities
+Develop Integrations (5-10%)
+Publish and consume events</li>
+<li>publish an event by using the API</li>
+<li>publish an event by using the Plug-in Registration Tool</li>
+<li>register service endpoints including webhooks, Azure Service Bus, and Azure Event Hub</li>
+<li>implement a Common Data Service listener for an Azure solution</li>
+<li>create an Azure Function that interacts with Power Platform
+Implement data synchronization</li>
+<li>configure entity change tracking</li>
+<li>read entity change records by using platform APIs</li>
+<li>create and use alternate key</li>
+</ul>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cesar-younes.github.io/tags/powerplatform/">powerplatform</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cesar-younes.github.io/2020/08/pre-ckad-prep/" data-tooltip="Pre-CKAD prep steps">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Cesar Younes. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cesar-younes.github.io/2020/08/pre-ckad-prep/" data-tooltip="Pre-CKAD prep steps">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcesar-younes.github.io%2F2021%2F03%2Fmicrosoft-certified-power-platform-developer-associate%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcesar-younes.github.io%2F2021%2F03%2Fmicrosoft-certified-power-platform-developer-associate%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcesar-younes.github.io%2F2021%2F03%2Fmicrosoft-certified-power-platform-developer-associate%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cesar Younes</h4>
+    
+      <div id="about-card-bio">Software Engineer living in Dubai focused on Microsoft Azure and Kubernetes.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Dubai
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cesar-younes.github.io/images/bwdelauney-180.png');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://cesar-younes.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/cesar-younes.github.io\/2021\/03\/microsoft-certified-power-platform-developer-associate\/';
+          
+            this.page.identifier = '\/2021\/03\/microsoft-certified-power-platform-developer-associate\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'cesaryounes';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

@@ -6,10 +6,24 @@
     <description>Recent content in Categories on Cesar Younes</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 12 May 2020 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cesar-younes.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>devops</title>
+      <link>https://cesar-younes.github.io/categories/devops/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/categories/devops/</guid>
+      <description></description>
+    </item>
     
-	<atom:link href="https://cesar-younes.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
-    
+    <item>
+      <title>CKAD Certification</title>
+      <link>https://cesar-younes.github.io/categories/ckad-certification/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/categories/ckad-certification/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>about</title>

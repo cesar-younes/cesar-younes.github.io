@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.75.1 with theme Tranquilpeak 0.4.7-BETA">
+<meta name="author" content="Cesar Younes">
+<meta name="keywords" content="">
+<meta name="description" content="Basic Windows Server template on Azure with ARM">
+
+
+<meta property="og:description" content="Basic Windows Server template on Azure with ARM">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows Server Packer Template on Azure">
+<meta name="twitter:title" content="Windows Server Packer Template on Azure">
+<meta property="og:url" content="https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+<meta property="twitter:url" content="https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+<meta property="og:site_name" content="Cesar Younes">
+<meta property="og:description" content="Basic Windows Server template on Azure with ARM">
+<meta name="twitter:description" content="Basic Windows Server template on Azure with ARM">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2020-05-12T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2020-05-12T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="devops">
+    
+  
+  
+    
+      <meta property="article:tag" content="packer">
+    
+      <meta property="article:tag" content="azure">
+    
+      <meta property="article:tag" content="image">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg">
+  <meta property="twitter:image" content="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg">
+
+
+    <title>Windows Server Packer Template on Azure</title>
+
+    <link rel="icon" href="https://cesar-younes.github.io/favicon.png">
+    
+
+    
+
+    <link rel="canonical" href="https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://cesar-younes.github.io/css/style-twzjdbqhmnnacqs0pwwdzcdbt8yhv8giawvjqjmyfoqnvazl0dalmnhdkvp7.min.css" />
+    
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="5">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://cesar-younes.github.io/">Cesar Younes</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://cesar-younes.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="5">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://cesar-younes.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Cesar Younes</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer living in Dubai focused on Microsoft Azure and Kubernetes.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/categories">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-bookmark"></i>
+      
+      <span class="sidebar-button-desc">Categories</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/archives">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-archive"></i>
+      
+      <span class="sidebar-button-desc">Archives</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/#about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-question"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/cesar-younes" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://stackoverflow.com/users/636472/cesaryounes" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-stack-overflow"></i>
+      
+      <span class="sidebar-button-desc">Stack Overflow</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://cesar-younes.github.io/index.xml">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-rss"></i>
+      
+      <span class="sidebar-button-desc">RSS</span>
+    </a>
+  </li>
+
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="5"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Windows Server Packer Template on Azure
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2020-05-12T00:00:00Z">
+        
+  May 12, 2020
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://cesar-younes.github.io/categories/devops">devops</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <h1 id="builder">Builder</h1>
+<p>Packer on Azure has 2 options for building images, <code>azure-arm</code> and <code>azure-chroot</code>. The simpler one to use is <code>azure-arm</code> so we start the builder section by specifying that. Note that I use the word section but it is only a logical division and everything under <a href="#builder">Builder</a> is just a</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;type&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;azure-arm&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="authentication">Authentication</h2>
+<p>Then we have to specify our authentication mechanism. I&rsquo;ve used a Service Principal as I&rsquo;m planning to run this template as part of a DevOps pipeline but for local development <a href="https://www.packer.io/docs/builders/azure/#azure-active-directory-interactive-login">interactive login</a> would probably be easier. To specify the service principal to use the following fields are needed:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;client_id&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `client_id`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;client_secret&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `client_secret`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;tenant_id&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `tenant_id`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;subscription_id&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `subscription_id`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="custom-image-storage">Custom Image Storage</h2>
+<p>After that we have to specify where the completed image will be stored. One can let Packer create it&rsquo;s own Resource Group and it will put all the stuff it generates in there or you can specify a Resource Group for Packer to use. I prefer to let Packer create it&rsquo;s own Resource Group as I&rsquo;ve found it easier to cleanup by just deleting the whole Resource Group. Note that Packer already does it&rsquo;s own clean-up but on occassion I&rsquo;ve had the clean-up fail due to an Azure-level error so I had to manually go and delete Packer&rsquo;s Resource Group.</p>
+<p>We also need to specify the name of the image produced. I use the built-in iso function to put the date in the name so I can easily identify when an image was created. For a 24-hour format the template follows this format {{isotime &ldquo;20060102150405&rdquo;}}, in json the fields look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;managed_image_resource_group_name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `result_rg`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;managed_image_name&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;windows-template-{{isotime \&#34;20060102150405\&#34;}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="base-image">Base Image</h2>
+<p>Then we have to specify the base image to use in the template. In my finished template I used variables instead of static values in order to easily switch to a different version of Windows without changing the template but when filled in-line the fields for specifying the image look like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;os_type&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Windows&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;image_publisher&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;MicrosoftWindowsServer&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;image_offer&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;WindowsServer&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;image_sku&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;2019-Datacenter&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="communicator">Communicator</h2>
+<p>Up to this point with what we have, we&rsquo;ve instructed Packer to create a Windows VM using ARM. Now we have to customize the VM by specifying a communicator to use and the code that needs to be run on the VM.
+The typical communicator used with a Windows VM is WinRM so we specify WinRM as follows. Use SSL and and WinRM insecure are set to true so we use HTTPS and so WinRM does not check the server certificate chain and host name. Packer generates a certificate and stores in KeyVault during its run so not having these options set to true causes WinRM to timeout. The WinRM timeout is how long Packer keeps trying to connect using WinRM. In normal circumstances 5 minutes is enough but sometimes a WinRM timeout error occurs due to a cloud-level issue so it would be worth increasing this timeout and giving it a second try.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;communicator&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;winrm&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;winrm_use_ssl&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;winrm_insecure&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#66d9ef">true</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;winrm_timeout&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;5m&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;winrm_username&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;packer&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><h2 id="azure-specific-settings">Azure-specific Settings</h2>
+<p>The final part of the builder section of the template contains some Azure-specific settings. We can specify tags to be added to the image in Azure. I&rsquo;ve added a Build ID that is automatically filled in by my DevOps pipeline but this can be passed in through a user variable or omitted altogether. Some other tags I usually add are Project, Environment, and Billing. Read the official <a href="https://docs.microsoft.com/en-us/azure/azure-resource-manager/management/tag-resources#required-access">docs on tags</a> for more ideas. Tags don&rsquo;t serve a functional purpose for Packer and are there for convenience.</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;azure_tags&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> {
+    <span style="color:#f92672">&#34;DevOps BuildId&#34;</span>: <span style="color:#e6db74">&#34;{{user `tags_build_id`}}&#34;</span>
+}<span style="color:#960050;background-color:#1e0010">,</span>
+</code></pre></div><p>In this section we also specify the Azure region in which the image will be stored, this is mandatory if we don&rsquo;t specify a Resource Group for Packer to use in the <a href="#custom-image-storage">Custom Image Storage</a> section.</p>
+<p>Then we specify a VM Size for the VM that Packer will create. A WinRM timeout issue has come up with some VM sizes so the recommended one to use is a size without S in the name like Standard_D2_v2 instead of Standard_DS2_v2.</p>
+<p>Finally, Packer can be told not to wait for cleanup by specifying async_resourcegroup_delete: true. When true, Packer sends the deletion command to Azure but doesn&rsquo;t wait for it to go through.</p>
+<p>The completed last section of the builder then looks like this:</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json"><span style="color:#e6db74">&#34;location&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;{{user `azure_location`}}&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;vm_size&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;Standard_D2_v2&#34;</span><span style="color:#960050;background-color:#1e0010">,</span>
+<span style="color:#e6db74">&#34;async_resourcegroup_delete&#34;</span><span style="color:#960050;background-color:#1e0010">:</span> <span style="color:#e6db74">&#34;true&#34;</span>
+</code></pre></div><h1 id="provisioners">Provisioners</h1>
+
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://cesar-younes.github.io/tags/packer/">packer</a>
+
+  <a class="tag tag--primary tag--small" href="https://cesar-younes.github.io/tags/azure/">azure</a>
+
+  <a class="tag tag--primary tag--small" href="https://cesar-younes.github.io/tags/image/">image</a>
+
+                  </div>
+                
+              
+            
+            <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cesar-younes.github.io/2020/05/new-beginnings/" data-tooltip="New Beginnings">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+            
+              
+                <div id="disqus_thread">
+  <noscript>Please enable JavaScript to view the <a href="//disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2021 Cesar Younes. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="5">
+        <div class="post-actions-wrap">
+  
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://cesar-younes.github.io/2020/05/new-beginnings/" data-tooltip="New Beginnings">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--disabled">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  
+</div>
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="5">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fcesar-younes.github.io%2F2020%2F05%2Fwindows-server-packer-template-on-azure%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fcesar-younes.github.io%2F2020%2F05%2Fwindows-server-packer-template-on-azure%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fcesar-younes.github.io%2F2020%2F05%2Fwindows-server-packer-template-on-azure%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://cesarblogstorage.blob.core.windows.net/admin/cesaryounes-256x256.jpg" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Cesar Younes</h4>
+    
+      <div id="about-card-bio">Software Engineer living in Dubai focused on Microsoft Azure and Kubernetes.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        Dubai
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      <div id="cover" style="background-image:url('https://cesar-younes.github.io/images/bwdelauney-180.png');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://cesar-younes.github.io/js/script-pcw6v3xilnxydl1vddzazdverrnn9ctynvnxgwho987mfyqkuylcb1nlt.min.js"></script>
+
+
+<script lang="javascript">
+window.onload = updateMinWidth;
+window.onresize = updateMinWidth;
+document.getElementById("sidebar").addEventListener("transitionend", updateMinWidth);
+function updateMinWidth() {
+  var sidebar = document.getElementById("sidebar");
+  var main = document.getElementById("main");
+  main.style.minWidth = "";
+  var w1 = getComputedStyle(main).getPropertyValue("min-width");
+  var w2 = getComputedStyle(sidebar).getPropertyValue("width");
+  var w3 = getComputedStyle(sidebar).getPropertyValue("left");
+  main.style.minWidth = `calc(${w1} - ${w2} - ${w3})`;
+}
+</script>
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/cesar-younes.github.io\/2020\/05\/windows-server-packer-template-on-azure\/';
+          
+            this.page.identifier = '\/2020\/05\/windows-server-packer-template-on-azure\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'cesaryounes';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+
+    
+  </body>
+</html>
+

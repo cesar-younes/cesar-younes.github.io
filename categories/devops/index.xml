@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>devops on Cesar Younes</title>
+    <link>https://cesar-younes.github.io/categories/devops/</link>
+    <description>Recent content in devops on Cesar Younes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 01 Mar 2021 00:00:00 +0000</lastBuildDate><atom:link href="https://cesar-younes.github.io/categories/devops/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Microsoft Certified: Power PLatform Developer Associate</title>
+      <link>https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/</link>
+      <pubDate>Mon, 01 Mar 2021 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/2021/03/microsoft-certified-power-platform-developer-associate/</guid>
+      <description>Basic Windows Server template on Azure with ARM</description>
+    </item>
+    
+    <item>
+      <title>Windows Server Packer Template on Azure</title>
+      <link>https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/</link>
+      <pubDate>Tue, 12 May 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/2020/05/windows-server-packer-template-on-azure/</guid>
+      <description>Basic Windows Server template on Azure with ARM</description>
+    </item>
+    
+  </channel>
+</rss>

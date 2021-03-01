@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Kubernetes on Cesar Younes</title>
+    <link>https://cesar-younes.github.io/tags/kubernetes/</link>
+    <description>Recent content in Kubernetes on Cesar Younes</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Thu, 13 Aug 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://cesar-younes.github.io/tags/kubernetes/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pre-CKAD prep steps</title>
+      <link>https://cesar-younes.github.io/2020/08/pre-ckad-prep/</link>
+      <pubDate>Thu, 13 Aug 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/2020/08/pre-ckad-prep/</guid>
+      <description>What to do before the exam</description>
+    </item>
+    
+    <item>
+      <title>CKAD Curriculum</title>
+      <link>https://cesar-younes.github.io/2020/07/ckad-curriculum/</link>
+      <pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/2020/07/ckad-curriculum/</guid>
+      <description>Curriculum for Certified Kubernetes Application Developer Exam</description>
+    </item>
+    
+    <item>
+      <title>Understand Kubernetes Primitives</title>
+      <link>https://cesar-younes.github.io/2020/07/ckad-curriculum/</link>
+      <pubDate>Tue, 14 Jul 2020 00:00:00 +0000</pubDate>
+      
+      <guid>https://cesar-younes.github.io/2020/07/ckad-curriculum/</guid>
+      <description>  API Primitives
+  Primitive Structure: API Version, kind, metadata, spec, status. Practice creating a new YAML or modifying an existing one.
+apiVersion: v1 kind: Pod metadata: labels: run: nginx name: nginx spec: containers: - image: nginx name: nginx resources: {} dnsPolicy: ClusterFirst restartPolicy: Never status: {}     Object Management (create, get, update, delete)
+  kubectl run nginx --image=nginx --dry-run=client -o yaml &amp;gt; nginx.yaml kubectl run hazelcast --image=hazelcast/hazelcast --env=&amp;#34;DNS_DOMAIN=cluster&amp;#34; --env=&amp;#34;POD_NAMESPACE=default&amp;#34; </description>
+    </item>
+    
+  </channel>
+</rss>
